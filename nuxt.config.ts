@@ -54,12 +54,12 @@ export default defineNuxtConfig({
   },
 
   llms: {
-    domain: 'https://docs-template.nuxt.dev/',
-    title: 'Nuxt Docs Template',
-    description: 'A template for building documentation with Nuxt UI and Nuxt Content.',
+    domain: 'https://docs.taiwanfrp.me/',
+    title: 'TaiwanFRP 文件',
+    description: 'TaiwanFRP 是在台灣、亞洲及其他地區提供免費 FRP 內網穿透服務的專案，這裡是官方文件站。',
     full: {
-      title: 'Nuxt Docs Template - Full Documentation',
-      description: 'This is the full documentation for the Nuxt Docs Template.'
+      title: 'TaiwanFRP 文件 - 說明文件',
+      description: '這裡是 TaiwanFRP 的說明文件，涵蓋服務介紹、安裝與使用說明。'
     },
     sections: [
       {
@@ -80,7 +80,7 @@ export default defineNuxtConfig({
   },
 
   mcp: {
-    name: 'Docs template'
+    name: 'TaiwanFRP Docs'
   },
 
   ogImage: {

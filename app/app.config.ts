@@ -12,59 +12,64 @@ export default defineAppConfig({
     }
   },
   seo: {
-    siteName: 'Nuxt Docs Template'
+    siteName: 'TaiwanFRP 文件'
   },
   header: {
-    title: '',
+    title: 'TaiwanFRP',
     to: '/',
     logo: {
-      alt: '',
+      alt: 'TaiwanFRP',
       light: '',
       dark: ''
     },
     search: true,
     colorMode: true,
     links: [{
+      'icon': 'i-simple-icons-discord',
+      'to': 'https://discord.gg/ueGFVVHp85',
+      'target': '_blank',
+      'aria-label': 'Discord'
+    }, {
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/nuxt-ui-templates/docs',
+      'to': 'https://github.com/taiwanfrp',
       'target': '_blank',
       'aria-label': 'GitHub'
     }]
   },
   footer: {
-    credits: `Built with Nuxt UI • © ${new Date().getFullYear()}`,
+    credits: `© ${new Date().getFullYear()} TaiwanFRP`,
     colorMode: false,
     links: [{
-      'icon': 'i-simple-icons-discord',
-      'to': 'https://go.nuxt.com/discord',
+      'icon': 'i-lucide-globe',
+      'to': 'https://taiwanfrp.me',
       'target': '_blank',
-      'aria-label': 'Nuxt on Discord'
+      'aria-label': 'TaiwanFRP 官方網站'
     }, {
-      'icon': 'i-simple-icons-x',
-      'to': 'https://go.nuxt.com/x',
+      'icon': 'i-simple-icons-discord',
+      'to': 'https://discord.gg/ueGFVVHp85',
       'target': '_blank',
-      'aria-label': 'Nuxt on X'
+      'aria-label': 'TaiwanFRP Discord'
     }, {
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/nuxt/ui',
+      'to': 'https://github.com/taiwanfrp',
       'target': '_blank',
-      'aria-label': 'Nuxt UI on GitHub'
+      'aria-label': 'TaiwanFRP GitHub'
     }]
   },
   toc: {
-    title: 'Table of Contents',
+    title: '目錄',
     bottom: {
-      title: 'Community',
-      edit: 'https://github.com/nuxt-ui-templates/docs/edit/main/content',
+      title: '社群',
+      edit: 'https://github.com/taiwanfrp/docs/edit/main/content',
       links: [{
-        icon: 'i-lucide-star',
-        label: 'Star on GitHub',
-        to: 'https://github.com/nuxt/ui',
+        icon: 'i-simple-icons-discord',
+        label: '加入 Discord',
+        to: 'https://discord.gg/ueGFVVHp85',
         target: '_blank'
       }, {
-        icon: 'i-lucide-book-open',
-        label: 'Nuxt UI docs',
-        to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
+        icon: 'i-simple-icons-github',
+        label: '在 GitHub 上追蹤',
+        to: 'https://github.com/taiwanfrp',
         target: '_blank'
       }]
     }
