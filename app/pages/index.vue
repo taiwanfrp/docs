@@ -6,7 +6,7 @@ definePageMeta({
   layout: 'docs'
 })
 
-const docPath = '/getting-started'
+const docPath = '/'
 const { toc } = useAppConfig()
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 
