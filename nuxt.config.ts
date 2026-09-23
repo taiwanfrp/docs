@@ -77,11 +77,11 @@ export default defineNuxtConfig({
 
   llms: {
     domain: 'https://docs.taiwanfrp.me/',
-    title: 'TaiwanFRP 文件',
-    description: 'TaiwanFRP 是在台灣、亞洲及其他地區提供免費 FRP 內網穿透服務的專案，這裡是官方文件站。',
+    title: 'TaiwanFRP 說明文件',
+    description: 'TaiwanFRP 提供免費的 FRP 內網穿透服務，服務範圍涵蓋台灣、亞洲及其他地區。即使沒有公網 IP，也能輕鬆讓外部網路存取你架設在家中或內網的服務，例如網站、遊戲伺服器或遠端桌面。',
     full: {
-      title: 'TaiwanFRP 文件 - 說明文件',
-      description: '這裡是 TaiwanFRP 的說明文件，涵蓋服務介紹、安裝與使用說明。'
+      title: 'TaiwanFRP 說明文件',
+      description: 'TaiwanFRP 官方說明文件，提供免費 FRP 內網穿透服務的介紹、安裝與使用教學。'
     },
     sections: [
       {

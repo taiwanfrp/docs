@@ -12,10 +12,10 @@ export default defineAppConfig({
     }
   },
   seo: {
-    siteName: 'TaiwanFRP 文件'
+    siteName: 'TaiwanFRP 說明文件'
   },
   header: {
-    title: 'TaiwanFRP',
+    title: 'TaiwanFRP 說明文件',
     to: '/',
     logo: {
       alt: 'TaiwanFRP',
