@@ -1,3 +1,20 @@
+import { readdirSync } from 'node:fs'
+import { resolve } from 'node:path'
+
+// 依 content/ 目錄產生所有 /raw/*.md 路徑，供靜態產生 (nuxi generate) 時預先渲染
+function getRawMarkdownRoutes() {
+  const files = readdirSync(resolve(import.meta.dirname, 'content'), { recursive: true, encoding: 'utf8' })
+  return files
+    .filter(file => file.endsWith('.md'))
+    .map((file) => {
+      const segments = file.replace(/\\/g, '/').replace(/\.md$/, '').split('/').map(segment => segment.replace(/^\d+\./, ''))
+      if (segments.at(-1) === 'index') {
+        segments.pop()
+      }
+      return `/raw/${segments.join('/') || 'index'}.md`
+    })
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -42,7 +59,8 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        '/'
+        '/',
+        ...getRawMarkdownRoutes()
       ],
       crawlLinks: true
     }

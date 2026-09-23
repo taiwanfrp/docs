@@ -8,7 +8,9 @@ const { copy, copied } = useClipboard()
 const site = useSiteConfig()
 
 const routePath = computed(() => withoutTrailingSlash(route.path))
-const mdPath = computed(() => `${site.url}/raw${routePath.value}.md`)
+// 首頁使用 /raw/index.md，避免產生 /raw/.md 這種點開頭的檔案
+const rawPath = computed(() => `/raw${routePath.value === '/' ? '/index' : routePath.value}.md`)
+const mdPath = computed(() => `${site.url}${rawPath.value}`)
 
 const items = [
   {
@@ -26,7 +28,7 @@ const items = [
     label: 'View as Markdown',
     icon: 'i-simple-icons:markdown',
     target: '_blank',
-    to: `/raw${routePath.value}.md`
+    to: rawPath.value
   },
   {
     label: 'Open in ChatGPT',
@@ -43,7 +45,7 @@ const items = [
 ]
 
 async function copyPage() {
-  copy(await $fetch<string>(`/raw${routePath.value}.md`))
+  copy(await $fetch<string>(rawPath.value))
 }
 </script>
 
