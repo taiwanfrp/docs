@@ -56,6 +56,11 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2026-06-30',
 
+  // 靜態產生 (nuxi generate) 時 IPX 預先渲染圖片會卡住，直接使用 public/ 中的原始圖片
+  image: {
+    provider: 'none'
+  },
+
   nitro: {
     prerender: {
       routes: [
