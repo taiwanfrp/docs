@@ -1,0 +1,24 @@
+name: purge-cache
+
+# Cloudflare Workers and Pages 部署完成後會在 commit 上回報 check run，
+# main 分支部署成功時清除快取
+on:
+  check_run:
+    types: [completed]
+
+jobs:
+  purge:
+    if: >-
+      github.event.check_run.app.slug == 'cloudflare-workers-and-pages' &&
+      github.event.check_run.conclusion == 'success' &&
+      github.event.check_run.check_suite.head_branch == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Purge Cloudflare cache
+        run: |
+          curl -fsS -X POST \
+            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"hosts":["${{ vars.DOCS_HOST }}"]}'
