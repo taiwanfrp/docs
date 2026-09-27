@@ -20,6 +20,8 @@
     "@nuxt/ui": "^4.11.1",
     "@nuxtjs/mcp-toolkit": "^0.21.0",
     "@nuxtjs/mdc": "^0.23.1",
+    "@nuxtjs/robots": "^6.2.3",
+    "@nuxtjs/sitemap": "^8.5.1",
     "@takumi-rs/core": "^2.13.7",
     "@vueuse/core": "^14.4.0",
     "minimark": "^0.2.0",

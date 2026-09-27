@@ -1,4 +1,5 @@
-import { readdirSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { readdirSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 // 依 content/ 目錄產生所有 /raw/*.md 路徑，供靜態產生 (nuxi generate) 時預先渲染
@@ -15,12 +16,26 @@ function getRawMarkdownRoutes() {
     })
 }
 
+// 取得檔案最後一次 git commit 的時間，供 sitemap 的 lastmod 使用
+// 尚未 commit 的新檔案改用檔案修改時間；無法執行 git 時回傳 undefined
+function getGitLastmod(file: string) {
+  try {
+    const date = execFileSync('git', ['log', '-1', '--format=%cI', '--', file], { encoding: 'utf8' }).trim()
+    return date || statSync(file).mtime.toISOString()
+  } catch {
+    return undefined
+  }
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
+    // robots / sitemap 需在 @nuxt/content 之前載入，才能掛上 content 解析 hook
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
     '@nuxt/content',
     'nuxt-og-image',
     'nuxt-llms',
@@ -34,7 +49,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   site: {
-    url: 'https://docs.taiwanfrp.me'
+    url: 'https://docs.taiwanfrp.me',
+    name: 'TaiwanFRP 說明文件'
   },
 
   content: {
@@ -63,6 +79,23 @@ export default defineNuxtConfig({
         ...getRawMarkdownRoutes()
       ],
       crawlLinks: true
+    }
+  },
+
+  hooks: {
+    // 以 git 最後 commit 時間作為 sitemap lastmod，frontmatter 有設定 sitemap.lastmod 時以其為準
+    'content:file:afterParse'({ file, content }) {
+      if (!file.path.endsWith('.md') || content.sitemap === false) {
+        return
+      }
+      const sitemap = (typeof content.sitemap === 'object' && content.sitemap ? content.sitemap : {}) as Record<string, unknown>
+      if (sitemap.lastmod) {
+        return
+      }
+      const lastmod = getGitLastmod(resolve(import.meta.dirname, file.path))
+      if (lastmod) {
+        content.sitemap = { ...sitemap, lastmod }
+      }
     }
   },
 
@@ -112,5 +145,10 @@ export default defineNuxtConfig({
 
   ogImage: {
     zeroRuntime: true
+  },
+
+  // sitemap 由 content/ 的 docs collection 產生，/raw/*.md 僅供 LLM 使用，不列入
+  sitemap: {
+    exclude: ['/raw/**']
   }
 })
