@@ -66,6 +66,13 @@ export default defineNuxtConfig({
     }
   },
 
+  runtimeConfig: {
+    public: {
+      // API 文件頁讀取的 OpenAPI 規格，可用 NUXT_PUBLIC_OPENAPI_URL 改成遠端網址
+      openapiUrl: '/openapi.json'
+    }
+  },
+
   experimental: {
     asyncContext: true
   },

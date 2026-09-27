@@ -25,6 +25,10 @@ export default defineAppConfig({
     search: true,
     colorMode: true,
     links: [{
+      'icon': 'i-lucide-braces',
+      'to': '/api-reference',
+      'aria-label': 'API 文件'
+    }, {
       'icon': 'i-simple-icons-discord',
       'to': 'https://discord.gg/ueGFVVHp85',
       'target': '_blank',
