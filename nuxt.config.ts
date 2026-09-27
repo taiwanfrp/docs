@@ -27,6 +27,12 @@ function getGitLastmod(file: string) {
   }
 }
 
+// API 文件頁不是 Nuxt Content 頁面，取頁面與規格檔中較新的 git commit 時間作為 lastmod
+const apiReferenceLastmod = ['app/pages/api-reference.vue', 'public/openapi.json']
+  .map(file => getGitLastmod(resolve(import.meta.dirname, file)))
+  .filter((date): date is string => !!date)
+  .sort((a, b) => Date.parse(b) - Date.parse(a))[0]
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -71,6 +77,10 @@ export default defineNuxtConfig({
       // API 文件頁讀取的 OpenAPI 規格，可用 NUXT_PUBLIC_OPENAPI_URL 改成遠端網址
       openapiUrl: '/openapi.json'
     }
+  },
+
+  routeRules: {
+    '/api-reference': apiReferenceLastmod ? { sitemap: { lastmod: apiReferenceLastmod } } : {}
   },
 
   experimental: {
