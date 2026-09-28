@@ -43,6 +43,12 @@ export default defineAppConfig({
   footer: {
     credits: `© ${new Date().getFullYear()} TaiwanFRP`,
     colorMode: false,
+    navigation: [{
+      label: '網站地圖',
+      to: '/sitemap.xml',
+      target: '_blank',
+      external: true
+    }],
     links: [{
       'icon': 'i-lucide-globe',
       'to': 'https://taiwanfrp.me',

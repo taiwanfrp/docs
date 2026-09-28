@@ -8,6 +8,14 @@ const { footer } = useAppConfig()
       {{ footer.credits }}
     </template>
 
+    <template v-if="footer?.navigation">
+      <UButton
+        v-for="(link, index) of footer.navigation"
+        :key="index"
+        v-bind="{ color: 'neutral', variant: 'link', size: 'lg', ...link }"
+      />
+    </template>
+
     <template #right>
       <UColorModeButton v-if="footer?.colorMode" />
 
