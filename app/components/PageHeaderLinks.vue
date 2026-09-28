@@ -11,6 +11,8 @@ const routePath = computed(() => withoutTrailingSlash(route.path))
 // 首頁使用 /raw/index.md，避免產生 /raw/.md 這種點開頭的檔案
 const rawPath = computed(() => `/raw${routePath.value === '/' ? '/index' : routePath.value}.md`)
 const mdPath = computed(() => `${site.url}${rawPath.value}`)
+// ChatGPT 無法讀取 text/markdown，改給目前頁面的 HTML 網址
+const pageUrl = computed(() => `${site.url}${routePath.value}`)
 
 const items = [
   {
@@ -34,7 +36,7 @@ const items = [
     label: 'Open in ChatGPT',
     icon: 'i-simple-icons:openai',
     target: '_blank',
-    to: `https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Read ${mdPath.value} so I can ask questions about it.`)}`
+    to: `https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Read ${pageUrl.value} so I can ask questions about it.`)}`
   },
   {
     label: 'Open in Claude',
