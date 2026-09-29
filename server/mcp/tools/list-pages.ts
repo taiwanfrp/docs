@@ -30,7 +30,8 @@ OUTPUT: Returns a structured list with:
         .select('title', 'path', 'description')
         .all()
 
-      const result = pages.map(page => ({
+      // 排除資料夾的 .navigation.yml，它只是側邊欄的群組設定，不是頁面
+      const result = pages.filter(page => !page.path.endsWith('/.navigation')).map(page => ({
         title: page.title,
         path: page.path,
         description: page.description,
