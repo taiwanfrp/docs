@@ -101,7 +101,10 @@ export default defineNuxtConfig({
         '/',
         ...getRawMarkdownRoutes()
       ],
-      crawlLinks: true
+      crawlLinks: true,
+      // 輸出成 foo.html 而不是 foo/index.html，Cloudflare Pages 才會以不帶結尾斜線的網址直接回應，
+      // 與 sitemap、站內連結一致 (foo/ 會轉址到 foo)
+      autoSubfolderIndex: false
     },
     // 部署到 Cloudflare Pages 時使用原生 Node.js 相容層，需在 Pages 設定中啟用 nodejs_compat 相容性旗標
     cloudflare: {
