@@ -24,6 +24,7 @@
     "@nuxtjs/sitemap": "^8.5.1",
     "@takumi-rs/core": "^2.13.7",
     "@vueuse/core": "^14.4.0",
+    "agents": "^0.24.0",
     "minimark": "^0.2.0",
     "nuxt": "^4.5.2",
     "nuxt-llms": "0.2.0",

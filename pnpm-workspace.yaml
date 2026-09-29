@@ -6,3 +6,4 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
   '@scarf/scarf': false
+  core-js-pure: false

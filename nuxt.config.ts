@@ -60,6 +60,12 @@ export default defineNuxtConfig({
   },
 
   content: {
+    // 部署到 Cloudflare Pages 後使用綁定名稱為 taiwanfrp_docs 的 D1 資料庫
+    // 開發 (nuxi dev) 與預先渲染時一律使用本機 SQLite，不受此設定影響
+    database: {
+      type: 'd1',
+      bindingName: 'taiwanfrp_docs'
+    },
     build: {
       markdown: {
         toc: {
@@ -96,6 +102,10 @@ export default defineNuxtConfig({
         ...getRawMarkdownRoutes()
       ],
       crawlLinks: true
+    },
+    // 部署到 Cloudflare Pages 時使用原生 Node.js 相容層，需在 Pages 設定中啟用 nodejs_compat 相容性旗標
+    cloudflare: {
+      nodeCompat: true
     }
   },
 
