@@ -59,6 +59,7 @@ const { header } = useAppConfig()
           v-for="(link, index) of header.links"
           :key="index"
           v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
+          :class="{ 'hidden lg:inline-flex': link.to === '/api-reference' }"
         />
       </template>
     </template>

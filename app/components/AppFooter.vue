@@ -26,6 +26,15 @@ const { footer } = useAppConfig()
           v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
         />
       </template>
+
+      <UButton
+        icon="i-lucide-braces"
+        to="/api-reference"
+        aria-label="API 文件"
+        color="neutral"
+        variant="ghost"
+        class="lg:hidden"
+      />
     </template>
   </UFooter>
 </template>
